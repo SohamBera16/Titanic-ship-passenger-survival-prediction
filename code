@@ -1,3 +1,5 @@
+import os
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -36,7 +38,7 @@ for feature_name in NUMERIC_COLUMNS:
   feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
   
   #The input_function specifies how data is converted to a tf.data.Dataset that feeds the input pipeline in a streaming fashion
-  def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32):
+def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32):
   def input_function():
     ds = tf.data.Dataset.from_tensor_slices((dict(data_df), label_df))
     if shuffle:
